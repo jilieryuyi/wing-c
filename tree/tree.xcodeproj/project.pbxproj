@@ -252,6 +252,7 @@
 				FE1839EC1E62EC330076EDCD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

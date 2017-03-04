@@ -10,6 +10,9 @@
 #define tree_h
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <memory.h>
+
 
 /*
 树的一些常用操作
@@ -26,18 +29,30 @@
 树在程序中表现为一种特殊的数据类型
 树的操作在程序中的表现为一组函数
  */
-typedef struct _Tree {} Tree;
-typedef struct _TreeNode {} TreeNode;
+typedef struct _treeNode TREENODE;
+typedef struct _Tree {
+    char *key;
+    char *value;
+    struct _Tree *parent; //父亲节点 如果父节点为null则说明为根节点
+    TREENODE *node;
+} WTREE;
 
-Tree *Tree_Create();
-void Tree_Destroy(Tree* tree);
-void Tree_Clear(Tree* tree);
-int Tree_Insert(Tree* tree, TreeNode* node, int pos);
-TreeNode *Tree_Delete(Tree* tree, int pos);
-TreeNode *Tree_Get(Tree* tree, int pos);
-TreeNode *Tree_Root(Tree* tree);
+typedef struct _treeNode {
+    struct _treeNode *next;
+    struct _treeNode *prev;
+    WTREE *tree;
+};
+
+
+void   wtreeCreate(WTREE **tree, const char *key, char *value);
+void   wtreeDestroy(WTREE **tree);
+WTREE *wtreeInsert(WTREE **tree, const char *tree_key, char *tree_value);
+WTREE *wtreeFind(WTREE **tree, const char *key);
+void   printTree(WTREE **tree, int index);
+
+/*void Tree_Clear(Tree* tree);
 int Tree_Height(Tree* tree);
 int Tree_Count(Tree* tree);
-int Tree_Degree(Tree* tree);
+int Tree_Degree(Tree* tree);*/
 
 #endif /* tree_h */
